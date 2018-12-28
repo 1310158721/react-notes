@@ -1,0 +1,62 @@
+{
+    "code": 200,
+    "message": "request is success",
+    "body": [
+        {
+            "key": "100",
+            "icon": "pie-chart",
+            "label": "Node",
+            "url": "/router/node",
+            "children": null
+        },
+        {
+            "key": "200",
+            "icon": "pie-chart",
+            "label": "Css",
+            "children": [
+                {
+                    "key": "201",
+                    "url": "/router/css",
+                    "label": "css"
+                },
+                {
+                    "key": "202",
+                    "url": "/router/less",
+                    "label": "less"
+                },
+                {
+                    "key": "203",
+                    "url": "/router/sass",
+                    "label": "sass"
+                },
+                {
+                    "key": "204",
+                    "url": "/router/stylus",
+                    "label": "stylus"
+                }
+            ]
+        },
+        {
+            "key": "300",
+            "icon": "pie-chart",
+            "label": "Javascript",
+            "children": [
+                {
+                    "key": "301",
+                    "url": "/router/js-raw",
+                    "label": "原生"
+                },
+                {
+                    "key": "302",
+                    "url": "/router/jq",
+                    "label": "JQ"
+                },
+                {
+                    "key": "303",
+                    "url": "/router/js-other",
+                    "label": "其他"
+                }
+            ]
+        }
+    ]
+}
