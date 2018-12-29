@@ -2,7 +2,6 @@ import React from 'react'
 import './container.css'
 import MyMenu from '../myMenu/myMenu'
 import Router from '../../router/router'
-import { BrowserRouter, Switch } from 'react-router-dom'
 
 import {
   Layout
@@ -23,7 +22,7 @@ export default class Container extends React.Component {
   onCollapse = (collapsed) => {
     this.setState({ collapsed })
   }
-  headerClick () {
+  headerClick (e) {
   	this.setState({
   		collapsed: !this.state.collapsed
   	})
@@ -31,14 +30,14 @@ export default class Container extends React.Component {
   render() {
     return (
         <Layout style={{ minHeight: '100vh', backgroundColor: 'gray' }}>
-            <Header style={{position: 'fixed', width: '100%', zIndex: 1, color: '#fff' }} onClick={this.headerClick.bind(this)}>123</Header>
-            <Layout style={{marginTop: 64}}>
+            <Header style={{position: 'fixed', width: '100%', zIndex: 1, color: '#fff' }} >
+              <div style={{width: 30, height: 30, lineHeight: '30px', backgroundColor: 'blue'}} onClick={(e) => {this.headerClick(e)}}>
+                
+              </div>
+            </Header>
+            <Layout style={{position: 'relative', top: '64px'}}>
                 {/* 为了在点击menu item时能获取到当前的路由信息，所以用 BrowserRouter包裹 */}
-                <BrowserRouter>
-                    <Switch>
-                        <MyMenu collapsed={this.state.collapsed}></MyMenu>
-                    </Switch>
-                </BrowserRouter>
+                <MyMenu collapsed={this.state.collapsed}></MyMenu>
                 <Content style={{backgroundColor: 'rgba(0,0,0,.3)', color: '#fff'}}>
                     <Router></Router>
                 </Content>

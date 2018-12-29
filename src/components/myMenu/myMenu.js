@@ -2,6 +2,8 @@ import React from 'react'
 import './myMenu.css'
 import { axiosGet } from '../../axios/axios'
 
+import { Link } from 'react-router-dom'
+
 import { Menu, Icon, Layout } from 'antd'
 
 const {
@@ -62,17 +64,21 @@ export default class MyMenu extends React.Component {
                       {
                         item.children.map(_item => 
                           <Menu.Item key={_item.key}>
-                            {_item.label}
+                            <Link to={_item.url}>
+                              {_item.label}
+                            </Link>
                           </Menu.Item>
                         )
                       }
                     </SubMenu>
                     :
                     <Menu.Item key={item.key} >
-                      <Icon type={item.icon} />
-                      <span>
-                        {item.label}
-                      </span>
+                      <Link to={item.url}>
+                        <Icon type={item.icon} />
+                        <span>
+                          {item.label}
+                        </span>
+                      </Link>
                     </Menu.Item>
                   )
                 }
