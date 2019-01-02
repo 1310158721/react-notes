@@ -1,48 +1,44 @@
 import React from 'react'
 import './container.css'
-import MyMenu from '../myMenu/myMenu'
-import Router from '../../router/router'
+import MyMenu from '../menu/menu'
 
-import {
-  Layout
-} from 'antd';
+import { Layout } from 'antd'
 
-const {
-  Header, Content
-} = Layout
+const { Header, Sider, Content } = Layout
 
 export default class Container extends React.Component {
-  constructor (props) {
-  	super(props)
-  	this.state = {
-      collapsed: false
-    }
+  state = {
+    collapsed: false
   }
 
-  onCollapse = (collapsed) => {
-    this.setState({ collapsed })
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed
+    })
   }
-  headerClick (e) {
-  	this.setState({
-  		collapsed: !this.state.collapsed
-  	})
-  }
+
   render() {
     return (
-        <Layout style={{ minHeight: '100vh', backgroundColor: 'gray' }}>
-            <Header style={{position: 'fixed', width: '100%', zIndex: 1, color: '#fff' }} >
-              <div style={{width: 30, height: 30, lineHeight: '30px', backgroundColor: 'blue'}} onClick={(e) => {this.headerClick(e)}}>
-                
-              </div>
-            </Header>
-            <Layout style={{position: 'relative', top: '64px'}}>
-                {/* 为了在点击menu item时能获取到当前的路由信息，所以用 BrowserRouter包裹 */}
-                <MyMenu collapsed={this.state.collapsed}></MyMenu>
-                <Content style={{backgroundColor: 'rgba(0,0,0,.3)', color: '#fff'}}>
-                    <Router></Router>
-                </Content>
-            </Layout>
-        </Layout>
-    )
+      <Layout className="container">
+        <Header className="my-header">
+            {
+            	this.state.collapsed 
+            	?
+            	<i className="iconfont icon" onClick={this.toggle}>&#xe62b;</i>
+            	:
+            	<i className="iconfont icon" onClick={this.toggle}>&#xe62c;</i>
+            }
+        </Header>
+        {/* 第一个Sider是充当背景以及动画，不填写内容， */}
+        <Sider trigger={null} collapsible collapsed={this.state.collapsed} style={{marginTop: 64}}/>
+        {/* 第二个Sider有动画，填写内容， */}
+        <Sider className="my-sider" trigger={null} collapsible collapsed={this.state.collapsed} >
+            <MyMenu></MyMenu>
+        </Sider>
+        <Content className="my-content">
+            <div style={{height: 2000}}>Content</div>
+        </Content>
+      </Layout>
+    );
   }
 }

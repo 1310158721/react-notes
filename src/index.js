@@ -1,22 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import Error from './components/error/error'
-import './common/style/antd.css'
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import './common/css/index.css'
+import './common/css/font.css'
 
-class Pages extends React.Component {
-	render () {
-		return (
-			<BrowserRouter>
-			    <Switch>
-			        <Route path='/router' component={App} />
-			        <Route path="/error" component={Error} />
-			        <Route exact path='/' render={ () => <Redirect to='/router/node' /> } />
-			    </Switch>
-			</BrowserRouter>
-		)
-	}
-}
 
-ReactDOM.render(<Pages />, document.getElementById('root'))
+
+ReactDOM.render(<App />, document.getElementById('root'))
